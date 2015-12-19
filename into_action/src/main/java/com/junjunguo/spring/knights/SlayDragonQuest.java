@@ -18,3 +18,4 @@ public class SlayDragonQuest implements Quest {
         stream.println("Embarking on quest to slay the dragon!");
     }
 }
+

@@ -6,7 +6,8 @@ package com.junjunguo.spring.knights;
  * Created by <a href="http://junjunguo.com">GuoJunjun</a> on 18/12/15.
  */
 public class BraveKnight implements Knight {
-    private Quest quest;
+    private Quest    quest;
+    private Minstrel minstrel;
 
     /**
      * @param quest BraveKnight, unlike DamselRescuingKnight, doesn’t create his own quest. Instead, he’s given a quest
@@ -17,7 +18,18 @@ public class BraveKnight implements Knight {
         this.quest = quest;
     }
 
+    public BraveKnight(Quest quest, Minstrel minstrel) {
+        this.quest = quest;
+        this.minstrel = minstrel;
+    }
+
+//    public void embarkOnQuest() {
+//        quest.embark();
+//    }
+
     public void embarkOnQuest() {
+        minstrel.singBeforeQuest();
         quest.embark();
+        minstrel.singAfterQuest();
     }
 }

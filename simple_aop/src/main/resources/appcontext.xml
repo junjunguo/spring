@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- 通知 -->
+    <bean id="beforeAdvice" class="com.junjunguo.aop.advice.BeforeAdvice"/>
+    <bean id="afterAdvice" class="com.junjunguo.aop.advice.AfterAdvice"/>
+    <bean id="compareAdvice" class="com.junjunguo.aop.advice.CompareAdvice"></bean>
+
+    <!-- 目标对象 -->
+    <bean id="restaurantServiceTarget" class="com.junjunguo.aop.restaurant.RestaurantServiceImpl"></bean>
+
+    <bean id="restaurantService" class="org.springframework.aop.framework.ProxyFactoryBean">
+
+        <!-- 拦截那些接口 : 切入点 只关心饭店的事-->
+        <property name="proxyInterfaces">
+            <value>com.junjunguo.aop.restaurant.RestaurantService</value>
+        </property>
+
+        <!-- 对这些方式做那些拦截:切面 -->
+        <property name="interceptorNames">
+            <list>
+                <value>beforeAdvice</value>
+
+                <value>afterAdvice</value>
+                <value>compareAdvice</value>
+            </list>
+        </property>
+
+        <property name="target">
+            <ref bean="restaurantServiceTarget" />
+        </property>
+    </bean>
+</beans>

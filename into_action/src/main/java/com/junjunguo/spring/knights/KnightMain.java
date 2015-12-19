@@ -27,7 +27,7 @@ public class KnightMain {
     public void runBean() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("META-INF/spring/knight.xml");
 
-        //        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(KnightConfig.class);
+//                AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(KnightConfig.class);
 
         Knight knight = context.getBean(Knight.class);      // quest is created at configuration
         knight.embarkOnQuest();
