@@ -21,15 +21,15 @@
         <constructor-arg value="#{T(System).out}"/>
     </bean>
 
-    <aop:config>
-        <aop:aspect ref="minstrel">
-            <!-- define pointcut -->
-            <aop:pointcut id="embark"
-                          expression="execution(* *.embarkOnQuest(..))"/>
-            <!-- declare before advice-->
-            <aop:before pointcut-ref="embark" method="singBeforeQuest"/>
-            <!-- declare after advice-->
-            <aop:after pointcut-ref="embark" method="singAfterQuest"/>
-        </aop:aspect>
-    </aop:config>
+    <!--<aop:config>-->
+        <!--<aop:aspect ref="minstrel">-->
+            <!--&lt;!&ndash; define pointcut &ndash;&gt;-->
+            <!--<aop:pointcut id="embark"-->
+                          <!--expression="execution(* *.embarkOnQuest(..))"/>-->
+            <!--&lt;!&ndash; declare before advice&ndash;&gt;-->
+            <!--<aop:before pointcut-ref="embark" method="singBeforeQuest"/>-->
+            <!--&lt;!&ndash; declare after advice&ndash;&gt;-->
+            <!--<aop:after pointcut-ref="embark" method="singAfterQuest"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
 </beans>

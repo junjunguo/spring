@@ -23,13 +23,13 @@ public class BraveKnight implements Knight {
         this.minstrel = minstrel;
     }
 
-//    public void embarkOnQuest() {
-//        quest.embark();
-//    }
-
     public void embarkOnQuest() {
-        minstrel.singBeforeQuest();
         quest.embark();
-        minstrel.singAfterQuest();
     }
+
+//    public void embarkOnQuest() {
+//        minstrel.singBeforeQuest();
+//        quest.embark();
+//        minstrel.singAfterQuest();
+//    }
 }
