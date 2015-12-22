@@ -95,10 +95,57 @@ public class Notepad { ... }
 specify prototype scope by using the SCOPE_PROTOTYPE constant from the ConfigurableBeanFactory class. You could also use @Scope("prototype"), but using the SCOPE_PROTOTYPE constant is safer and less prone to mistakes.
 
 
+## 4 Aspect Oriented Spring
+
+> With AOP, you still define the common functionality in one place, but you can declaratively define how and where this functionality is applied without having to modify the class to which you’re applying the new feature.
+
+Aspects are often described in terms of advice, pointcuts, and join points.
+
+####ADVICE
+> aspects have a purpose—a job they’re meant to do. In AOP terms, the job of an aspect is called advice.
+
+Advice defines both the what and the when of an aspect.
+
+Spring aspects can work with five kinds of advice:
+
+-  Before—The advice functionality takes place before the advised method is invoked.
+-  After—The advice functionality takes place after the advised method completes, regardless of the outcome.
+-  After-returning—The advice functionality takes place after the advised method successfully completes.
+-  After-throwing—The advice functionality takes place after the advised method throws an exception.
+-  Around—The advice wraps the advised method, providing some functionality before and after the advised method is invoked.
+
+####JOIN POINTs
+
+> A join point is a point in the execution of the application where an aspect can be plugged in. This point could be a method being called, an exception being thrown, or even a field being modified. These are the points where your aspect’s code can be inserted into the normal flow of your application to add new behavior.
+
+####POINTCUTs
+
+> If advice defines the what and when of aspects, then pointcuts define the where.
+
+
+####ASPECTs
+
+> An aspect is the merger of advice and pointcuts. Taken together, advice and point- cuts define everything there is to know about an aspect—what it does and where and when it does it.
+
+####INTRODUCTIONs
+> An introduction allows you to add new methods or attributes to existing classes.
+
+####WEAVING
+> Weaving is the process of applying aspects to a target object to create a new proxied object.
+
+summary:
+
+- advice contains the cross-cutting behavior that needs to be applied to an application’s objects. 
+- The join points are all the points within the execution flow of the application that are candidates to have advice applied. 
+- The pointcut defines where (at what join points) that advice is applied.
+- pointcuts define which join points get advised.
+
 
 
 
 #Sources: 
 
-- [Spring in Action, 4th Edition](https://www.manning.com/books/spring-in-action-fourth-edition)
-- [WikiPedia](https://en.wikipedia.org/wiki/Spring_Framework)
+- [Spring in Action, 4th Edition](https://www.manning.com/books/spring-in-action-fourth-edition) - book homepage
+- [WikiPedia](https://en.wikipedia.org/wiki/Spring_Framework) - Spring Framework
+- [docs.spring.io](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html)	- AOP
+
