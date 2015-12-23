@@ -25,7 +25,7 @@ Spring employs four key strategies:
 ###1.2 Containing beans
 In a Spring-based application, your application objects live in the Spring container. 
 
-- the container creates the objects, wires them together, configures them, and manages their com- plete lifecycle from cradle to grave (or new to finalize(), as the case may be).
+- the container creates the objects, wires them together, configures them, and manages their complete lifecycle from cradle to grave (or new to finalize(), as the case may be).
 
 
 ###1.3 surveying the spring landscape
