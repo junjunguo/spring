@@ -141,6 +141,60 @@ summary:
 - pointcuts define which join points get advised.
 
 
+# Spring on the web
+
+## 5 build spring web applications
+
+-  Mapping requests to Spring controllers
+-  Transparently binding form parameters
+-  Validating form submissions
+
+Spring MVC helps you build web- based applications that are as flexible and as loosely coupled as the Spring Framework itself.
+
+### 5.1 Getting started with Spring MVC
+
+Like most Java- based web frameworks, Spring MVC funnels requests through a single front controller servlet.
+
+- A front controller is a common web application pattern where a single servlet delegates responsibility for a request to other components of an application to perform actual processing. 
+	- In the case of Spring MVC, DispatcherServlet is the front controller.
+- The DispatcherServlet’s job is to send the request on to a Spring MVC controller.
+	- A controller is a Spring component that processes the request.
+	- the controller doesn’t get coupled to a particular view, the view name passed back to DispatcherServlet doesn’t directly identify a specific JSP. It doesn’t even necessarily suggest that the view is a JSP. Instead, it only carries a logical name that will be used to look up the actual view that will produce the result.
+
+![mvc](files/mvc.png)
+
+1. request leaves the browser
+2. handler mappings: to figure out where the request’s next stop will be; pays particular attention to the URL carried by the request
+3. Once an appropriate controller has been chosen, At the controller, the request drops off its payload, waits while the controller processes that information.
+4. It then sends the request, along with the model and view name, back to the DispatcherServlet
+5. only carries a logical name that will be used to look up the actual view that will produce the result. 
+	- DispatcherServlet consults a view resolver.
+	- to map the logical view name to a specific view implementation
+6. view implementation, typically a JSP, where it delivers the model data.
+7. The view will use the model data to render output that will be carried back to the client by the (not- so-hardworking) response object.
+
+```java 
+public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class<?>[]{RootConfig.class};
+    }
+
+    @Override
+    protected Class<?>[] getServletConfigClasses() { // Specify configuration class
+        return new Class<?>[]{WebConfig.class};
+    }
+
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"}; // Map DispatcherServlet to
+    }
+}
+```
+
+- getServletMappings(), identifies one or more paths that DispatcherServlet will be mapped to. In this case, it’s mapped to /, indicating that it will be the application’s default servlet. It will handle all requests coming into the application.
+
+
 
 
 #Sources: 
