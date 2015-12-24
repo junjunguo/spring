@@ -4,7 +4,6 @@ import com.junjunguo.spring.mvc.model.Spittle;
 
 import java.util.List;
 
-
 public interface SpittleRepository {
 
   List<Spittle> findRecentSpittles();

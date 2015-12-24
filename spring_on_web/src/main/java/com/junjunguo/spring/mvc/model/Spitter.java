@@ -97,9 +97,9 @@ public class Spitter {
         this.email = email;
     }
 
-
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (!(o instanceof Spitter)) return false;
         Spitter spitter = (Spitter) o;

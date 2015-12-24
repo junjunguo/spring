@@ -5,58 +5,58 @@ import java.util.Objects;
 
 public class Spittle {
 
-  private final Long id;
-  private final String message;
-  private final Date time;
-  private Double latitude;
-  private Double longitude;
+    private final Long   id;
+    private final String message;
+    private final Date   time;
+    private       Double latitude;
+    private       Double longitude;
 
-  public Spittle(String message, Date time) {
-    this(null, message, time, null, null);
-  }
-  
-  public Spittle(Long id, String message, Date time, Double longitude, Double latitude) {
-    this.id = id;
-    this.message = message;
-    this.time = time;
-    this.longitude = longitude;
-    this.latitude = latitude;
-  }
+    public Spittle(String message, Date time) {
+        this(null, message, time, null, null);
+    }
 
-  public long getId() {
-    return id;
-  }
+    public Spittle(Long id, String message, Date time, Double longitude, Double latitude) {
+        this.id = id;
+        this.message = message;
+        this.time = time;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 
-  public String getMessage() {
-    return message;
-  }
+    public long getId() {
+        return id;
+    }
 
-  public Date getTime() {
-    return time;
-  }
-  
-  public Double getLongitude() {
-    return longitude;
-  }
-  
-  public Double getLatitude() {
-    return latitude;
-  }
+    public String getMessage() {
+        return message;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Spittle)) return false;
-    Spittle spittle = (Spittle) o;
-    return Objects.equals(getId(), spittle.getId()) &&
-           Objects.equals(getMessage(), spittle.getMessage()) &&
-           Objects.equals(getTime(), spittle.getTime()) &&
-           Objects.equals(getLatitude(), spittle.getLatitude()) &&
-           Objects.equals(getLongitude(), spittle.getLongitude());
-  }
+    public Date getTime() {
+        return time;
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(getId(), getMessage(), getTime(), getLatitude(), getLongitude());
-  }
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Spittle)) return false;
+        Spittle spittle = (Spittle) o;
+        return Objects.equals(getId(), spittle.getId()) &&
+               Objects.equals(getMessage(), spittle.getMessage()) &&
+               Objects.equals(getTime(), spittle.getTime()) &&
+               Objects.equals(getLatitude(), spittle.getLatitude()) &&
+               Objects.equals(getLongitude(), spittle.getLongitude());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getMessage(), getTime(), getLatitude(), getLongitude());
+    }
 }

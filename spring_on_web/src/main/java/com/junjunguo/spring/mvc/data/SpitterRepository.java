@@ -1,6 +1,5 @@
 package com.junjunguo.spring.mvc.data;
 
-
 import com.junjunguo.spring.mvc.model.Spitter;
 
 public interface SpitterRepository {
