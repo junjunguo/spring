@@ -15,23 +15,26 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan("com.junjunguo.spring.mvc.controller")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-  @Bean
-  public ViewResolver viewResolver() {
-    InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-    resolver.setPrefix("/WEB-INF/views/");
-    resolver.setSuffix(".jsp");
-    return resolver;
-  }
-  
-  @Override
-  public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-    configurer.enable();
-  }
-  
-  @Override
-  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    // TODO Auto-generated method stub
-    super.addResourceHandlers(registry);
-  }
+    @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setSuffix(".jsp");
+        // resolve JstlView instead of InternalResourceView is to set its viewClass property:
+        //        resolver.setViewClass                                      (
+        //                org.springframework.web.servlet.view.JstlView.class);
+        return resolver;
+    }
+
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // TODO Auto-generated method stub
+        super.addResourceHandlers(registry);
+    }
 
 }

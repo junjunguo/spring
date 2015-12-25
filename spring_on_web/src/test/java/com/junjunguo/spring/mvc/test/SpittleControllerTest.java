@@ -1,4 +1,5 @@
-package com.junjunguo.spring.mvc.controller;
+package com.junjunguo.spring.mvc.test;
+import com.junjunguo.spring.mvc.controller.SpittleController;
 import com.junjunguo.spring.mvc.data.SpittleRepository;
 import com.junjunguo.spring.mvc.model.Spittle;
 import org.junit.Test;
