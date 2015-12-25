@@ -194,9 +194,48 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
 - getServletMappings(), identifies one or more paths that DispatcherServlet will be mapped to. In this case, it’s mapped to /, indicating that it will be the application’s default servlet. It will handle all requests coming into the application.
 
+## 6 Rendering web views
+### 6.1 understanding view resolution
+
+- controller only knows about the view by a logical view name.
+- InternalResourceViewResolver
+	- configured to apply a prefix of `/WEB-INF/views/`
+	-  typically used for JSP
+		- most Java web applications use JSP
+
+```
+	/WEB-INF/views/home.jsp
+	|-------------|----|---|
+		prefix  v   suffix
+		   logical view name
+```
+
+a prefix and a suffix are attached to the view name to determine the physical path to a view resource in the same web application.
+
+> some view resolvers, such as ResourceBundleViewResolver, directly map a logical view name to a specific implementation of the View interface, Internal- ResourceViewResolver takes a more indirect approach.
+
+```java
+@Bean
+public ViewResolver viewResolver() {
+  InternalResourceViewResolver resolver =
+      new InternalResourceViewResolver();
+  resolver.setPrefix("/WEB-INF/views/");
+  resolver.setSuffix(".jsp");
+  return resolver;
+}
+```
+
+### 6.3 Defining a layout with Apache tiles views
+
+- use a layout engine such as Apache Tiles to define a com- mon page layout that will be applied to all pages. 
+
+configuring
+	
+- TilesConfigurer bean whose job is to locate and load tile definitions and generally coordinate Tiles.
+- need a TilesViewResolver bean to resolve logical view names to tile definitions.
 
 
-
+		
 #Sources: 
 
 - [Spring in Action, 4th Edition](https://www.manning.com/books/spring-in-action-fourth-edition) - book homepage
