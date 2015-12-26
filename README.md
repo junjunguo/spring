@@ -234,8 +234,29 @@ configuring
 - TilesConfigurer bean whose job is to locate and load tile definitions and generally coordinate Tiles.
 - need a TilesViewResolver bean to resolve logical view names to tile definitions.
 
+### 6.4 Thymeleaf
+A web template engine
 
-		
+- Thymeleaf, an alternative to JSP, as the view layer of a Spring MVC application. Thymeleaf is a compelling option because it enables the cre- ation of natural templates that are still pure HTML and can be edited and viewed in the raw as if they were static HTML, but still render dynamic model data at runtime. More- over, Thymeleaf templates are largely decoupled from servlets, enabling them to be used in places where JSPs can’t.
+
+## 7 Advanced Spring MVC
+
+| Spring exception | HTTP status code |
+| --- | --- |
+| BindException	| 400 - Bad Request |
+| ConversionNotSupportedException | 500 - Internal Server Error |
+| HttpMediaTypeNotAcceptableException | 406 - Not Acceptable | 	
+| HttpMediaTypeNotSupportedException | 415 - Unsupported Media Type |
+| HttpMessageNotReadableException | 400 - Bad Request | 	
+| HttpMessageNotWritableException | 500 - Internal Server Error |
+| HttpRequestMethodNotSupportedException | 405 - Method Not Allowed | 
+| MethodArgumentNotValidException | 400 - Bad Request | 	
+| MissingServletRequestParameterException | 400 - Bad Request | 
+| MissingServletRequestPartException | 400 - Bad Request | 	
+| NoSuchRequestHandlingMethodException | 404 - Not Found | 	
+| TypeMismatchException | 400 - Bad Request |	
+
+
 #Sources: 
 
 - [Spring in Action, 4th Edition](https://www.manning.com/books/spring-in-action-fourth-edition) - book homepage
