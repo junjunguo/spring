@@ -256,6 +256,27 @@ A web template engine
 | NoSuchRequestHandlingMethodException | 404 - Not Found | 	
 | TypeMismatchException | 400 - Bad Request |	
 
+## 8 Working with Spring Web Flow
+
+Spring Web Flow is a web framework that enables the development of elements fol- lowing a prescribed flow. 
+ 
+- It’s possible to write a flowed application with any web framework
+- Spring Web Flow is an extension to Spring MVC that enables development of flow- based web applications.
+- It does this by separating the definition of an application’s flow from the classes and views that implement the flow’s behavior.
+- [Spring Web Flow: wikipedia](https://en.wikipedia.org/wiki/Spring_Web_Flow)
+	- providing the infrastructure for building and running rich web applications.
+	- SWF  tries to solve 3 core problems facing web application developers:
+		- 'How do you express page navigation rules?'
+		- 'How do you manage navigation and conversational state?'
+		- 'How do you facilitate modularization and reuse?'
+- Spring Web Flow is built on a foundation of Spring MVC. 
+	- That means all requests to a flow first go through Spring MVC’s DispatcherServlet.
+
+```
+Flow registry basse path     Flow ID     Flow definition
+/WEB-INF/flows/              order/      order-flow.xml
+```
+
 
 #Sources: 
 
