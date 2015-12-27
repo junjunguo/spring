@@ -1,0 +1,1 @@
+[source:](http://websystique.com/spring-security/spring-security-4-logout-example/)
