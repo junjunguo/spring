@@ -276,6 +276,21 @@ Spring Web Flow is a web framework that enables the development of elements fol-
 Flow registry basse path     Flow ID     Flow definition
 /WEB-INF/flows/              order/      order-flow.xml
 ```
+## 9 Securing web applications
+
+Spring Security, a security framework implemented with Spring AOP and servlet filters.
+
+two main areas that Spring Security targets:
+
+- “authentication” and 
+- “authorization” (or “access-control”).
+
+> “Authentication” is the process of establishing a principal is who they claim to be (a “principal” generally means a user, device or some other system which can perform an action in your application).
+
+> “Authorization” refers to the process of deciding whether a principal is allowed to perform an action within your application.
+
+### 9.1 
+
 
 
 #Sources: 
