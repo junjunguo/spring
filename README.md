@@ -9,6 +9,12 @@ Spring Framework
 	- dependency injection ( DI )
 	- Aspect Oriented Programming ( AOP )
 
+###[RESTful Web Service](RESTfulWebService/)
+- Spring 4.3.3 <!--latest: Sep, 2016-->
+- jackson 2.8.4 <!--latest: Oct, 2016-->
+- hibernate 5.2.3 <!--latest: Sep, 2016-->
+- mysql.connector 6.0.5 <!--(Oct, 2016)-->
+
 ##1 Springing into action
 
 ###1.1 Simplifying Java development
@@ -290,6 +296,10 @@ two main areas that Spring Security targets:
 > “Authorization” refers to the process of deciding whether a principal is allowed to perform an action within your application.
 
 ### 9.1 
+
+### 10 
+
+>  I believe that interfaces are key to writing loosely coupled code and that they should be used at all layers of an application, not just at the data-access layer.
 
 
 
