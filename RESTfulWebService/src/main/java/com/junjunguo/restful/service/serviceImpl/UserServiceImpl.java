@@ -1,6 +1,6 @@
 package com.junjunguo.restful.service.serviceImpl;
 
-import com.junjunguo.restful.model.User;
+import com.junjunguo.restful.model.db.User;
 import com.junjunguo.restful.dao.UserDao;
 import com.junjunguo.restful.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

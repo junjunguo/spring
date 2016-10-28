@@ -1,6 +1,6 @@
 package com.junjunguo.restful.controller;
 
-import com.junjunguo.restful.model.User;
+import com.junjunguo.restful.model.db.User;
 import com.junjunguo.restful.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

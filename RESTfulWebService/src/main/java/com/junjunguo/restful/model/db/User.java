@@ -1,5 +1,6 @@
-package com.junjunguo.restful.model;
+package com.junjunguo.restful.model.db;
 
+import com.junjunguo.restful.model.Gender;
 import com.junjunguo.restful.util.MyDate;
 
 import javax.persistence.Column;
@@ -26,12 +27,12 @@ public class User {
     private String password;
     @Column(name = "COUNTRY", nullable = true, columnDefinition = "VARCHAR(128)")
     private String country;
-    @Column(name = "GENDER", nullable = true, columnDefinition = "VARCHAR(10)")
-    private String gender;
+    @Column(name = "GENDER", nullable = true, columnDefinition = "TINYINT")
+    private Gender gender;
     @Column(name = "BIRTH", nullable = true, columnDefinition = "DATE")
-    private Date birth;
+    private Date   birth;
     @Column(name = "REGISTEREDTIME", nullable = false, columnDefinition = "DATETIME")
-    private Date registeredtime;
+    private Date   registeredtime;
 
     /**
      * @param name     user name
@@ -39,7 +40,7 @@ public class User {
      * @param password user password
      */
     public User(String name, String email, String password) {
-        this(name, email, password, "", "", Calendar.getInstance().getTime());
+        this(name, email, password, "", Gender.Unknown, Calendar.getInstance().getTime());
     }
 
     /**
@@ -50,7 +51,7 @@ public class User {
      * @param gender   user gender MALE,FEMALE
      * @param birth    user birthday
      */
-    public User(String name, String email, String password, String country, String gender, Date birth) {
+    public User(String name, String email, String password, String country, Gender gender, Date birth) {
         this(name, email, password, country, gender, birth, Calendar.getInstance().getTime());
     }
 
@@ -63,11 +64,13 @@ public class User {
      * @param birth          user birthday
      * @param registeredtime registered time cannot be set, auto generate
      */
-    private User(String name, String email, String password, String country, String gender, Date birth, Date registeredtime) {
+    private User(String name, String email, String password, String country, Gender gender, Date birth,
+            Date registeredtime) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.country = country;
+        this.gender = gender;
         this.birth = birth;
         this.registeredtime = registeredtime;
     }
@@ -78,9 +81,10 @@ public class User {
     public User() {
         super();
     }
-    
+
     /**
      * auto generate registered time
+     *
      * @param philip
      * @param s
      * @param norway
@@ -177,7 +181,7 @@ public class User {
      *
      * @param gender New value of gender.
      */
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -186,7 +190,7 @@ public class User {
      *
      * @return Value of gender.
      */
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
@@ -220,13 +224,13 @@ public class User {
     @Override
     public String toString() {
         return "User [name=" + name +
-                ", email='" + email +
-                ", country='" + country +
-                ", gender='" + gender +
-                ", password='" + password +
-                ", birth=" + new MyDate().getDateString(birth) +
-                ", registeredtime=" + new MyDate().getDateString(registeredtime) +
-                ']';
+               ", email='" + email +
+               ", country='" + country +
+               ", gender='" + gender +
+               ", password='" + password +
+               ", birth=" + new MyDate().getDateString(birth) +
+               ", registeredtime=" + new MyDate().getDateString(registeredtime) +
+               ']';
     }
 
 }

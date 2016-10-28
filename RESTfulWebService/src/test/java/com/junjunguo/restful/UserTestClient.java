@@ -1,6 +1,7 @@
 package com.junjunguo.restful;
 
-import com.junjunguo.restful.model.User;
+import com.junjunguo.restful.model.Gender;
+import com.junjunguo.restful.model.db.User;
 import com.junjunguo.restful.util.MyDate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.RestTemplate;
@@ -34,6 +35,7 @@ public class UserTestClient {
                                        ", email=" + map.get("email") +
                                        ", country=" + map.get("country") +
                                        ", password=" + map.get("password") +
+                                       ", gender=" + map.get("gender") +
                                        ", registered time=" + map.get("registeredtime") +
                                        ", birth=" + map.get("birth"));
                 }
@@ -137,8 +139,11 @@ public class UserTestClient {
         createUser(new User("Alf", "wang@ntnu.no", "alf's password"));
         createUser(new User("meng", "zhu@yahoo.com", "meng's password"));
         createUser(new User("ole", "ole@ole.com", "ole's password"));
-        createUser(new User("kari", "kari@kari.com", "kari's password"));
-        createUser(new User("guo", "guo@a.a", "guo's password"));
+        createUser(new User("kari", "kari@kari.com", "kari's password", "Norway", Gender.Female,
+                new MyDate().getDate("2002-02-02 16:02:37")));
+        User guo = new User("guo", "guo@a.a", "guo's password");
+        guo.setGender(Gender.Male);
+        createUser(guo);
         listAllUsers();
         getUserByName("ole");
         getUserByEmail("wang@ntnu.no");
@@ -153,7 +158,7 @@ public class UserTestClient {
         createUser(new User("Johan", "Johan@ntnu.com", "Johan's password"));
         listAllUsers();
         createUser(new User("Maria", "Maria@hotmail.com", "Maria's password"));
-        deleteUserByEmail("guo@a.a");
+        deleteUserByEmail("ole@ole.com");
         listAllUsers();
     }
 }

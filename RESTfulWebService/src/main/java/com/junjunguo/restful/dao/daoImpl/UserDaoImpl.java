@@ -1,7 +1,7 @@
 package com.junjunguo.restful.dao.daoImpl;
 
 import com.junjunguo.restful.dao.UserDao;
-import com.junjunguo.restful.model.User;
+import com.junjunguo.restful.model.db.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;

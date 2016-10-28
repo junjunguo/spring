@@ -2,7 +2,7 @@ package com.junjunguo.restful.configuration;
 
 import com.junjunguo.restful.dao.UserDao;
 import com.junjunguo.restful.dao.daoImpl.UserDaoImpl;
-import com.junjunguo.restful.model.User;
+import com.junjunguo.restful.model.db.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

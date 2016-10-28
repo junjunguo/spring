@@ -1,6 +1,6 @@
 package com.junjunguo.restful.dao;
 
-import com.junjunguo.restful.model.User;
+import com.junjunguo.restful.model.db.User;
 
 import java.util.List;
 
