@@ -10,9 +10,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
- * This file is part of server
+ * This file is part of restfulservice.
  * <p/>
- * Created by <a href="http://junjunguo.com">GuoJunjun</a> on October 11, 2015.
+ * Created by <a href="http://junjunguo.com">GuoJunjun</a> on 27/10/2016.
  */
 public class UserTestClient {
 
@@ -31,11 +31,11 @@ public class UserTestClient {
             if (usersMap != null) {
                 for (LinkedHashMap<String, Object> map : usersMap) {
                     System.out.println("User :  Name=" + map.get("name") +
-                            ", email=" + map.get("email") +
-                            ", country=" + map.get("country") +
-                            ", password=" + map.get("password") +
-                            ", registered time=" + map.get("registeredtime") +
-                            ", birth=" + map.get("birth"));
+                                       ", email=" + map.get("email") +
+                                       ", country=" + map.get("country") +
+                                       ", password=" + map.get("password") +
+                                       ", registered time=" + map.get("registeredtime") +
+                                       ", birth=" + map.get("birth"));
                 }
             } else {
                 System.out.println("No user exist----------");
@@ -106,7 +106,7 @@ public class UserTestClient {
         RestTemplate restTemplate = new RestTemplate();
         try {
             restTemplate.put(REST_SERVICE_URI, user);
-//            restTemplate.put(REST_SERVICE_URI + user.getEmail() + "/", user);
+            //            restTemplate.put(REST_SERVICE_URI + user.getEmail() + "/", user);
             System.out.println("update user: " + user);
         } catch (org.springframework.web.client.RestClientException e) {
             if (e.getMessage().contains(HttpStatus.NOT_FOUND.toString())) {
@@ -136,8 +136,11 @@ public class UserTestClient {
     public static void main(String args[]) {
         createUser(new User("Alf", "wang@ntnu.no", "alf's password"));
         createUser(new User("meng", "zhu@yahoo.com", "meng's password"));
+        createUser(new User("ole", "ole@ole.com", "ole's password"));
+        createUser(new User("kari", "kari@kari.com", "kari's password"));
+        createUser(new User("guo", "guo@a.a", "guo's password"));
         listAllUsers();
-        getUserByName("ol");
+        getUserByName("ole");
         getUserByEmail("wang@ntnu.no");
         getUserByEmail("jonas@gmail.com");
         createUser(new User("Philip", "philip@a.a", "philip's password"));
@@ -146,8 +149,8 @@ public class UserTestClient {
                 new MyDate().getDate("2000-02-02 16:02:37")));
         listAllUsers();
         createUser(new User("Lene", "Lene@gmail.com", "stian's password"));
-        createUser(new User("Ali", "ali@gmail.com", "ali's password"));
-        createUser(new User("William", "william@ntnu.com", "william's password"));
+        createUser(new User("Mariana", "Mariana@gmail.com", "Mariana's password"));
+        createUser(new User("Johan", "Johan@ntnu.com", "Johan's password"));
         listAllUsers();
         createUser(new User("Maria", "Maria@hotmail.com", "Maria's password"));
         deleteUserByEmail("guo@a.a");

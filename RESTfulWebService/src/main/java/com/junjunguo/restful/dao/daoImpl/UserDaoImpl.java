@@ -2,9 +2,8 @@ package com.junjunguo.restful.dao.daoImpl;
 
 import com.junjunguo.restful.dao.UserDao;
 import com.junjunguo.restful.model.User;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,11 +29,7 @@ public class UserDaoImpl implements UserDao {
 
     @Transactional
     public List<User> findAllUsers() {
-        @SuppressWarnings("unchecked")
-        List<User> listUser = (List<User>) sessionFactory.getCurrentSession()
-                .createCriteria(User.class)
-                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-        return listUser;
+        return sessionFactory.getCurrentSession().createQuery("from User", User.class).list();
     }
 
     @Transactional
@@ -49,14 +44,18 @@ public class UserDaoImpl implements UserDao {
 
     @Transactional
     public User findByEmail(String email) {
-        Query q = sessionFactory.getCurrentSession().createQuery("from User where email = '" + email + "'");
+        Query q = sessionFactory.getCurrentSession().createQuery("from User where email = '" + email + "'", User.class);
         return !q.list().isEmpty() ? (User) q.list().get(0) : null;
     }
-
 
     @Transactional
     public User findByName(String name) {
-        Query q = sessionFactory.getCurrentSession().createQuery("from User where name = '" + name + "'");
+        Query q = sessionFactory.getCurrentSession().createQuery("from User where name = '" + name + "'", User.class);
         return !q.list().isEmpty() ? (User) q.list().get(0) : null;
     }
+
+    public void log(String s) {
+        System.out.println(this.getClass().getSimpleName() + "................. " + s);
+    }
+
 }

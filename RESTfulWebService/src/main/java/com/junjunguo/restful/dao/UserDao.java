@@ -35,5 +35,5 @@ public interface UserDao {
     /**
      * @return a List of users
      */
-    List<User> findAllUsers();
+    List findAllUsers();
 }
