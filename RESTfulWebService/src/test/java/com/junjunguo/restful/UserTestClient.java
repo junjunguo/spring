@@ -1,7 +1,7 @@
-package com.junjunguo.restfulwebservice;
+package com.junjunguo.restful;
 
-import com.junjunguo.restfulwebservice.model.User;
-import com.junjunguo.restfulwebservice.util.MyDate;
+import com.junjunguo.restful.model.User;
+import com.junjunguo.restful.util.MyDate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,9 +10,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
- * This file is part of restfulwebservice.
+ * This file is part of server
  * <p/>
- * Created by <a href="http://junjunguo.com">GuoJunjun</a> on 27/10/2016.
+ * Created by <a href="http://junjunguo.com">GuoJunjun</a> on October 11, 2015.
  */
 public class UserTestClient {
 

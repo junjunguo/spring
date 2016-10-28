@@ -1,15 +1,14 @@
-package com.junjunguo.restfulwebservice.dao;
+package com.junjunguo.restful.dao;
 
-import com.junjunguo.restfulwebservice.model.User;
+import com.junjunguo.restful.model.User;
 
 import java.util.List;
 
 /**
- * This file is part of restfulwebservice.
+ * This file is part of restfulservice.
  * <p/>
  * Created by <a href="http://junjunguo.com">GuoJunjun</a> on 27/10/2016.
  */
-
 public interface UserDao {
     /**
      * @param email user email

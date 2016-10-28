@@ -1,15 +1,16 @@
-package com.junjunguo.restfulwebservice.util;
+package com.junjunguo.restful.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+
 /**
- * This file is part of restfulwebservice.
+ * This file is part of restfulservice.
  * <p/>
  * Created by <a href="http://junjunguo.com">GuoJunjun</a> on 27/10/2016.
  */
-
 public class MyDate {
 
     /**

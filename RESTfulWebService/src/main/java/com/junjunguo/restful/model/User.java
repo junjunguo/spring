@@ -1,6 +1,6 @@
-package com.junjunguo.restfulwebservice.model;
+package com.junjunguo.restful.model;
 
-import com.junjunguo.restfulwebservice.util.MyDate;
+import com.junjunguo.restful.util.MyDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * This file is part of restfulwebservice.
+ * This file is part of restfulservice.
  * <p/>
  * Created by <a href="http://junjunguo.com">GuoJunjun</a> on 27/10/2016.
  */
@@ -29,9 +29,9 @@ public class User {
     @Column(name = "GENDER", nullable = true, columnDefinition = "VARCHAR(10)")
     private String gender;
     @Column(name = "BIRTH", nullable = true, columnDefinition = "DATE")
-    private Date   birth;
+    private Date birth;
     @Column(name = "REGISTEREDTIME", nullable = false, columnDefinition = "DATETIME")
-    private Date   registeredtime;
+    private Date registeredtime;
 
     /**
      * @param name     user name
@@ -63,8 +63,7 @@ public class User {
      * @param birth          user birthday
      * @param registeredtime registered time cannot be set, auto generate
      */
-    private User(String name, String email, String password, String country, String gender, Date birth,
-            Date registeredtime) {
+    private User(String name, String email, String password, String country, String gender, Date birth, Date registeredtime) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -74,8 +73,14 @@ public class User {
     }
 
     /**
+     * JsonMappingException: No suitable constructor found for type. Jackson can’t access the constructor.
+     */
+    public User() {
+        super();
+    }
+    
+    /**
      * auto generate registered time
-     *
      * @param philip
      * @param s
      * @param norway
@@ -84,13 +89,6 @@ public class User {
      */
     public User(String philip, String s, String norway, String s1, Date date) {
         this.registeredtime = Calendar.getInstance().getTime();
-    }
-
-    /**
-     * JsonMappingException: No suitable constructor found for type. Jackson can’t access the constructor.
-     */
-    public User() {
-        super();
     }
 
     /**
@@ -222,13 +220,13 @@ public class User {
     @Override
     public String toString() {
         return "User [name=" + name +
-               ", email='" + email +
-               ", country='" + country +
-               ", gender='" + gender +
-               ", password='" + password +
-               ", birth=" + new MyDate().getDateString(birth) +
-               ", registeredtime=" + new MyDate().getDateString(registeredtime) +
-               ']';
+                ", email='" + email +
+                ", country='" + country +
+                ", gender='" + gender +
+                ", password='" + password +
+                ", birth=" + new MyDate().getDateString(birth) +
+                ", registeredtime=" + new MyDate().getDateString(registeredtime) +
+                ']';
     }
 
 }

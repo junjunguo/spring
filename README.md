@@ -10,10 +10,9 @@ Spring Framework
 	- Aspect Oriented Programming ( AOP )
 
 ###[RESTful Web Service](RESTfulWebService/)
-- Spring 4.3.3 <!--latest: Sep, 2016-->
-- jackson 2.8.4 <!--latest: Oct, 2016-->
-- hibernate 5.2.3 <!--latest: Sep, 2016-->
-- mysql.connector 6.0.5 <!--(Oct, 2016)-->
+- Spring 4.3.3 <--latest: Sep, 2016-->
+- jackson 2.8.4 <--latest: Oct, 2016-->
+- hibernate 5.2.3 <--latest: Sep, 2016-->
 
 ##1 Springing into action
 

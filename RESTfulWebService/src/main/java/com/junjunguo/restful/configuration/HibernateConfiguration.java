@@ -1,8 +1,8 @@
-package com.junjunguo.restfulwebservice.configuration;
+package com.junjunguo.restful.configuration;
 
-import com.junjunguo.restfulwebservice.dao.UserDao;
-import com.junjunguo.restfulwebservice.dao.daoImpl.UserDaoImpl;
-import com.junjunguo.restfulwebservice.model.User;
+import com.junjunguo.restful.dao.UserDao;
+import com.junjunguo.restful.dao.daoImpl.UserDaoImpl;
+import com.junjunguo.restful.model.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,13 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * This file is part of restfulwebservice.
+ * This file is part of restfulservice.
  * <p/>
  * Created by <a href="http://junjunguo.com">GuoJunjun</a> on 27/10/2016.
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({"com.junjunguo.restfulwebservice.configuration"})
+@ComponentScan({"com.junjunguo.restful.configuration"})
 public class HibernateConfiguration {
     @Bean(name = "dataSource")
     public DataSource getDataSource() {
@@ -44,7 +44,7 @@ public class HibernateConfiguration {
      * <h2>hibernate.show_sql</h2> e.g. <b>"true | false"</b>. Write all SQL statements to console. This is an
      * alternative to setting the log category org.hibernate.SQL to debug.
      * <p>
-     * <h2>hibernate.format_sql</h2> e.g. <b>"true | false"</b>.	Pretty print the SQL in the log and console.
+     * <h2>hibernate.format_sql</h2> e.g. <b>"true | false"</b>.    Pretty print the SQL in the log and console.
      * <p>
      * <h2>hibernate.hbm2ddl.auto</h2>  <b> "validate | update | create | create-drop" </b>. Automatically validates or
      * exports schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will
@@ -56,13 +56,12 @@ public class HibernateConfiguration {
      * them manually.
      */
     private Properties getHibernateProperties() {
-
         Properties properties = new Properties();
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.format_sql", "true");
         properties.put("hibernate.order_updates", "true");
         properties.put("hibernate.hbm2ddl.auto", "create");
-        properties.put("hibernate.dialect", "com.junjunguo.restfulwebservice.util.CustomMysqlDialect");
+        properties.put("hibernate.dialect", "com.junjunguo.restful.util.CustomMysqlDialect");
         return properties;
     }
 
@@ -79,8 +78,9 @@ public class HibernateConfiguration {
     @Bean(name = "transactionManager")
     public HibernateTransactionManager getTransactionManager(
             SessionFactory sessionFactory) {
-        return new HibernateTransactionManager(
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager(
                 sessionFactory);
+        return transactionManager;
     }
 
     @Autowired

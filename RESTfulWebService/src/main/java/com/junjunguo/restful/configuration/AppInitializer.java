@@ -1,4 +1,4 @@
-package com.junjunguo.restfulwebservice.configuration;
+package com.junjunguo.restful.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

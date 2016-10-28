@@ -1,8 +1,8 @@
-package com.junjunguo.restfulwebservice.service.serviceImpl;
+package com.junjunguo.restful.service.serviceImpl;
 
-import com.junjunguo.restfulwebservice.dao.UserDao;
-import com.junjunguo.restfulwebservice.model.User;
-import com.junjunguo.restfulwebservice.service.UserService;
+import com.junjunguo.restful.model.User;
+import com.junjunguo.restful.dao.UserDao;
+import com.junjunguo.restful.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * This file is part of restfulwebservice.
+ * This file is part of restfulservice.
  * <p/>
  * Created by <a href="http://junjunguo.com">GuoJunjun</a> on 27/10/2016.
  */

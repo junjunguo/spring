@@ -1,7 +1,7 @@
-package com.junjunguo.restfulwebservice.dao.daoImpl;
+package com.junjunguo.restful.dao.daoImpl;
 
-import com.junjunguo.restfulwebservice.dao.UserDao;
-import com.junjunguo.restfulwebservice.model.User;
+import com.junjunguo.restful.dao.UserDao;
+import com.junjunguo.restful.model.User;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * This file is part of restfulwebservice.
+ * This file is part of restfulservice.
  * <p/>
  * Created by <a href="http://junjunguo.com">GuoJunjun</a> on 27/10/2016.
  */
@@ -32,8 +32,8 @@ public class UserDaoImpl implements UserDao {
     public List<User> findAllUsers() {
         @SuppressWarnings("unchecked")
         List<User> listUser = (List<User>) sessionFactory.getCurrentSession()
-                                                         .createCriteria(User.class)
-                                                         .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+                .createCriteria(User.class)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
         return listUser;
     }
 
