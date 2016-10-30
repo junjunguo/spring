@@ -3,7 +3,6 @@ package com.junjunguo.restful.controller;
 import com.junjunguo.restful.model.db.User;
 import com.junjunguo.restful.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,87 +23,89 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @CrossOrigin
     @RequestMapping(path = "/list/", method = RequestMethod.GET)
-    public ResponseEntity<List<User>> listAllUsers() {
-        log("list ....");
-
-        //        ModelAndView
-
+    public ResponseEntity listAllUsers() {
         List<User> users = userService.findAllUsers();
-        log("list .... users " + users.toString());
         if (users.isEmpty()) {
-            return new ResponseEntity<List<User>>(
-                    HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No users registered!");
         }
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(path = "/name/{name}/", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> getUserByName(
+    public ResponseEntity getUserByName(
             @PathVariable("name")
                     String name) {
         User user = userService.findByName(name);
         if (user == null) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found!");
         }
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(path = "/email/{email:.+}/", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> getUserByEmail(
+    public ResponseEntity getUserByEmail(
             @PathVariable("email")
                     String email) {
         User user = userService.findByEmail(email);
         if (user == null) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found!");
         }
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(path = "", method = RequestMethod.POST)
-    public ResponseEntity<Void> createUser(
+    public ResponseEntity createUser(
             @RequestBody
                     User user, UriComponentsBuilder ucBuilder) {
         log("create user" + user.toString());
         if (userService.isUserExist(user.getEmail())) {
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+            //            throw new CustomerException(HttpStatus.NOT_FOUND, "User already exist!");
+            // exceptions send too much data to client: which may cause security issues.
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("user already exist!");
         }
-        log("create user +");
         userService.addUser(user);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/user/email/{email}").buildAndExpand(user.getEmail()).toUri());
-        log("created ");
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        //        HttpHeaders headers = new HttpHeaders();
+        //        headers.setLocation(ucBuilder.path("/user/email/{email}").buildAndExpand(user.getEmail()).toUri());
+        //        log("created ");
+        return ResponseEntity.status(HttpStatus.OK).body("succeed!");
     }
 
+    @CrossOrigin
     @RequestMapping(path = "", method = RequestMethod.PUT)
-    public ResponseEntity<User> updateUser(
+    public ResponseEntity updateUser(
             @RequestBody
                     User user) {
         User currentUser = userService.findByEmail(user.getEmail());
 
         if (currentUser == null) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not registered!");
         }
         userService.updateUser(currentUser);
         return new ResponseEntity<User>(currentUser, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(path = "{email:.+}/", method = RequestMethod.DELETE)
-    public ResponseEntity<User> deleteUser(
+    public ResponseEntity deleteUser(
             @PathVariable("email")
                     String email) {
         User user = userService.findByEmail(email);
         if (user == null) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found!");
         }
         userService.deleteUserByEmail(email);
-        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("delete succeed!");
     }
 
     public void log(String s) {
+
         System.out.println(this.getClass().getSimpleName() + "................. " + s);
     }
 }

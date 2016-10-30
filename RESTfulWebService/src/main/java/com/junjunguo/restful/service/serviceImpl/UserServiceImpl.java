@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,6 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void addUser(User user) {
+        user.setRegisteredtime(new Date(System.currentTimeMillis()));
         userDao.saveUser(user);
     }
 

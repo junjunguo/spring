@@ -8,7 +8,7 @@ package com.junjunguo.restful.model;
 public enum Gender {
     Female(0),
     Male(1),
-    Unknown(3);
+    Unknown(5);
     private int value;
 
     Gender(int value) {
@@ -16,7 +16,7 @@ public enum Gender {
     }
 
     /**
-     * @return Female(0), Male(1), Unknown(3);
+     * @return Female(0), Male(1), Unknown(5);
      */
     public int getValue() {return value;}
 }

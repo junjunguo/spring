@@ -32,7 +32,7 @@ public class User {
     @Column(name = "BIRTH", nullable = true, columnDefinition = "DATE")
     private Date   birth;
     @Column(name = "REGISTEREDTIME", nullable = false, columnDefinition = "DATETIME")
-    private Date   registeredtime;
+    private Date   registeredTime;
 
     /**
      * @param name     user name
@@ -62,17 +62,17 @@ public class User {
      * @param country        user come from
      * @param gender         user gender MALE,FEMALE
      * @param birth          user birthday
-     * @param registeredtime registered time cannot be set, auto generate
+     * @param registeredTime registered time cannot be set, auto generate
      */
     private User(String name, String email, String password, String country, Gender gender, Date birth,
-            Date registeredtime) {
+            Date registeredTime) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.country = country;
         this.gender = gender;
         this.birth = birth;
-        this.registeredtime = registeredtime;
+        this.registeredTime = registeredTime;
     }
 
     /**
@@ -92,7 +92,7 @@ public class User {
      * @param date
      */
     public User(String philip, String s, String norway, String s1, Date date) {
-        this.registeredtime = Calendar.getInstance().getTime();
+        this.registeredTime = Calendar.getInstance().getTime();
     }
 
     /**
@@ -105,12 +105,12 @@ public class User {
     }
 
     /**
-     * Sets new registeredtime.
+     * Sets new registeredTime.
      *
-     * @param registeredtime New value of registeredtime.
+     * @param registeredTime New value of registeredTime.
      */
-    public void setRegisteredtime(Date registeredtime) {
-        this.registeredtime = registeredtime;
+    public void setRegisteredtime(Date registeredTime) {
+        this.registeredTime = registeredTime;
     }
 
     /**
@@ -213,12 +213,12 @@ public class User {
     }
 
     /**
-     * Gets registeredtime.
+     * Gets registeredTime.
      *
-     * @return Value of registeredtime.
+     * @return Value of registeredTime.
      */
     public Date getRegisteredtime() {
-        return registeredtime;
+        return registeredTime;
     }
 
     @Override
@@ -229,7 +229,7 @@ public class User {
                ", gender='" + gender +
                ", password='" + password +
                ", birth=" + new MyDate().getDateString(birth) +
-               ", registeredtime=" + new MyDate().getDateString(registeredtime) +
+               ", registeredTime=" + new MyDate().getDateString(registeredTime) +
                ']';
     }
 

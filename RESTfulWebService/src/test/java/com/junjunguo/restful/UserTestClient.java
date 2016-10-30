@@ -36,7 +36,7 @@ public class UserTestClient {
                                        ", country=" + map.get("country") +
                                        ", password=" + map.get("password") +
                                        ", gender=" + map.get("gender") +
-                                       ", registered time=" + map.get("registeredtime") +
+                                       ", registered time=" + map.get("registeredTime") +
                                        ", birth=" + map.get("birth"));
                 }
             } else {
