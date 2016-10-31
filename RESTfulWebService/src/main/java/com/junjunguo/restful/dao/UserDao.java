@@ -23,9 +23,14 @@ public interface UserDao {
     User findByName(String name);
 
     /**
-     * @param user object: save or update this user
+     * @param user object: save this user
      */
     void saveUser(User user);
+
+    /**
+     * @param user object: update this user
+     */
+    void updateUser(User user);
 
     /**
      * @param email delete user by the given email

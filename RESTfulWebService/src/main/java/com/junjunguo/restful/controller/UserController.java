@@ -60,6 +60,18 @@ public class UserController {
     }
 
     @CrossOrigin
+    @RequestMapping(path = "login/", method = RequestMethod.POST)
+    public ResponseEntity login(
+            @RequestBody
+                    User user) {
+        User us = userService.findByEmail(user.getEmail());
+        if (us != null && us.getPassword().equals(user.getPassword())) {
+            return new ResponseEntity<User>(us, HttpStatus.OK);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("user name or password not correct!");
+    }
+
+    @CrossOrigin
     @RequestMapping(path = "", method = RequestMethod.POST)
     public ResponseEntity createUser(
             @RequestBody
@@ -82,12 +94,14 @@ public class UserController {
     public ResponseEntity updateUser(
             @RequestBody
                     User user) {
-        User currentUser = userService.findByEmail(user.getEmail());
+        log("user " + user.toString());
 
+        User currentUser = userService.findByEmail(user.getEmail());
+        log("current " + currentUser);
         if (currentUser == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not registered!");
         }
-        userService.updateUser(currentUser);
+        userService.updateUser(user);
         return new ResponseEntity<User>(currentUser, HttpStatus.OK);
     }
 
@@ -96,6 +110,7 @@ public class UserController {
     public ResponseEntity deleteUser(
             @PathVariable("email")
                     String email) {
+        log("delete " + email);
         User user = userService.findByEmail(email);
         if (user == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found!");
