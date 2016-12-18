@@ -1,19 +1,15 @@
-#Spring security + JWT token based REST API
+#RESTful Web Service + Spring Security + Basic Authentication
 
-- RESTful Web Service:
-    - spring framework 4.3.4
-    - Hibernate 5.2.3
-    - Spring security 4.2.0
-    - JSON Web Token 0.7.0
+![basic authentication](../files/rest_api_basic_auth.png)
+
+######basic access authentication 
+is a method for a HTTP user agent to provide a user name and password when making a request.
+
 
 
 ![RESTful Web Service](../files/RESTfulWebService.png)
 
-## JSON Web Token (JWT)
-**JWT**: a JSON-based open standard for creating access tokens that assert some number of claims.
-- [JWT](https://jwt.io/)
-
-## MySQL
+##MySQL
 
 
 ### MySQL operations: `mysql>`
