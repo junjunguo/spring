@@ -1,0 +1,37 @@
+# config context path to "/" by setting an empty string
+server:
+  contextPath:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/restfulwebservice?autoReconnect=true&useSSL=false
+    username: junjunguo
+    password: password
+    driver-class-name: com.mysql.jdbc.Driver
+      # Keep the connection alive if idle for a long time (needed in production)
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+#logging:
+#  level:
+#    org.springframework:
+#      security: DEBUG
