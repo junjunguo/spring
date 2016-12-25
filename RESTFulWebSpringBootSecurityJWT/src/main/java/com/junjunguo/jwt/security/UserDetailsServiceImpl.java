@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userService.findByEmail(username);
 
         if (user == null) {
-            throw new UsernameNotFoundException(String.format("No user found with identity '%s'.", username));
+            throw new UsernameNotFoundException(String.format("NOT found!'.", username));
         } else {
             return new UserDetailsImpl(user);
         }

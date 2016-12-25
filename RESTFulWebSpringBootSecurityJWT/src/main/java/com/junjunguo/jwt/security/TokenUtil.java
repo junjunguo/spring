@@ -186,7 +186,7 @@ public class TokenUtil implements Serializable {
     public String generateToken(UserDetails userDetails, Device device) {
         Map<String, Object> claims = new HashMap<>();
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
-        claims.put(CLAIM_KEY_AUDIENCE, generateAudience(device));
+//        claims.put(CLAIM_KEY_AUDIENCE, generateAudience(device));
         claims.put(CLAIM_KEY_CREATED, new Date());
         return generateToken(claims);
     }

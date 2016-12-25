@@ -22,6 +22,7 @@ $(function () {
     }
 
     function doLogin(loginData) {
+        console.log("login data: "+ JSON.stringify(loginData));
         $.ajax({
             url: "/auth",
             type: "POST",

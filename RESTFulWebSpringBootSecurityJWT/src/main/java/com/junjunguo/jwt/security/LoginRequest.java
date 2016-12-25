@@ -1,13 +1,11 @@
 package com.junjunguo.jwt.security;
 
-import java.io.Serializable;
-
 /**
  * The User Login request model.
  */
-public class LoginRequest implements Serializable {
+public class LoginRequest {
 
-    private static final long serialVersionUID = -8445943548965154778L;
+//    private static final long serialVersionUID = -8445943548965154778L;
 
     private String email;
     private String password;

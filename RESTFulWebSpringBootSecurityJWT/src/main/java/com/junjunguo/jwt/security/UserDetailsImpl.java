@@ -3,10 +3,13 @@ package com.junjunguo.jwt.security;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.junjunguo.jwt.model.entity.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * This class is an implementation of {@link UserDetails} use for authentication.
@@ -86,7 +89,7 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     @Override public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     /**
@@ -117,7 +120,11 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     @Override public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        //        new SimpleGrantedAuthority(
+
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(AuthorityName.ROLE_USER.name()));
+        return authorities;
     }
 
     @JsonIgnore

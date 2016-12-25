@@ -36,32 +36,44 @@ public class AppAuthenticationTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws
             ServletException, IOException {
-        String authToken = request.getHeader(this.tokenHeader);
-//        authToken.startsWith("Bearer ");
-        // String authToken = header.substring(7);
-        String username = tokenUtil.getUsernameFromToken(authToken);
+        log("1 URI: " + request.getRequestURI() + " C path " + request.getContextPath());
+        try {
+            String authToken = request.getHeader(this.tokenHeader);
+            log("2 auth " + authToken);
+            //            if (authToken.startsWith("Bearer ")) {
+            //                authToken = authToken.substring(7);
+            //            }
+            String username = tokenUtil.getUsernameFromToken(authToken);
 
-        logger.info("checking authentication for user " + username);
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                // not necessary to load the use details from the database.
+                // can store the information in the token.
+                UserDetails userDetails = new UserDetailsImpl(userService.findByEmail(username));
+                log("3 user details " + userDetails + ", setting security context");
 
-            // not necessary to load the use details from the database.
-            // can store the information in the token.
-            UserDetails userDetails = new UserDetailsImpl(userService.findByEmail(username));
+                if (tokenUtil.validateToken(authToken, userDetails)) {
 
-            if (tokenUtil.validateToken(authToken, userDetails)) {
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                            userDetails, null, userDetails.getAuthorities());
 
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    log("4 authentication: " + authentication);
 
-                logger.info("authenticated user " + username + ", setting security context");
-
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
             }
-        }
 
-        chain.doFilter(request, response);
+            log("5 checking authentication for user " + request.getQueryString()+ " response: "+response.toString());
+            chain.doFilter(request, response);
+        } catch (Exception e) {
+            log("6 exception "+e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void log(String s) {
+        System.out.println(this.getClass().getSimpleName() + "................. " + s);
     }
 }

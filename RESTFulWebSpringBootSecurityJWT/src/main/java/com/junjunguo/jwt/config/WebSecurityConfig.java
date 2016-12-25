@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -52,6 +53,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new AppAuthenticationTokenFilter();
     }
 
+    @Bean
+    public DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authProvider());
+    }
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
@@ -74,15 +88,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/favicon.ico",
                         "/**/*.html",
                         "/**/*.css",
-                        "/**/*.js"
+                        "/**/*.js",
+                        "/user/register/",
+                        "/user/login/",
+                        "/auth/"
                             ).permitAll()
-                .antMatchers(
-                        HttpMethod.POST,
-                        "/user/register/"
-                            ).permitAll()
-                .antMatchers("/auth/**").permitAll()
                 .antMatchers("/user/register/").permitAll()
-                .antMatchers("/user/list/").permitAll()
+                .antMatchers("/user/login/").permitAll()
+                .antMatchers("/auth/").permitAll()
                 .anyRequest().authenticated();
 
         // Custom JWT based security filter

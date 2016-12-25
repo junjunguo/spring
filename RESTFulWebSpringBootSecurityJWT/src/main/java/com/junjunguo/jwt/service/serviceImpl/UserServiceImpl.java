@@ -4,6 +4,7 @@ import com.junjunguo.jwt.dao.UserDao;
 import com.junjunguo.jwt.model.entity.User;
 import com.junjunguo.jwt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,9 @@ import java.util.List;
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserDao userDao;
@@ -34,13 +38,15 @@ public class UserServiceImpl implements UserService {
     }
 
     public void create(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.create(user);
     }
 
-    public User update(User u) {
+    public User update(User c, User u) {
         if (u == null || u.getEmail() == null) {
             return null;
         }
+        u.setPassword(c.getPassword()); // password can not be changed her
         return userDao.update(u);
     }
 
@@ -50,5 +56,10 @@ public class UserServiceImpl implements UserService {
 
     public boolean isExist(String email) {
         return findByEmail(email) != null;
+    }
+
+    @Override public void changePassword(User user, String newPassword) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userDao.update(user);
     }
 }

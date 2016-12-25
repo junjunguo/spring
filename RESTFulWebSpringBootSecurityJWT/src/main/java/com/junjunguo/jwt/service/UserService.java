@@ -26,7 +26,9 @@ public interface UserService {
     List<User> findByName(String name);
 
     /**
-     * Create.
+     * Create and save new user in DB.
+     * <p>
+     * plaintext password will be encoded with {@link org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder}
      *
      * @param user the user
      */
@@ -35,10 +37,11 @@ public interface UserService {
     /**
      * Update user.
      *
-     * @param user the user
+     * @param current   the current user
+     * @param update the user with updated info.
      * @return the user
      */
-    User update(User user);
+    User update(User current, User update);
 
     /**
      * Delete by email.
@@ -61,4 +64,12 @@ public interface UserService {
      * @return the boolean
      */
     boolean isExist(String email);
+
+    /**
+     * Change password.
+     *
+     * @param user        the current user
+     * @param newPassword the new password
+     */
+    void changePassword(User user, String newPassword);
 }
