@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,12 +26,13 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping(path = "list/", method = RequestMethod.GET)
-    public ResponseEntity listAllUsers() {
+    public ResponseEntity listAllUsers(@AuthenticationPrincipal UserDetails activeUser) {
+        log("active user "+ activeUser.getUsername());
         List<User> users = userService.findAll();
         if (users.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No users registered!");
         }
-        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @CrossOrigin
@@ -51,7 +54,7 @@ public class UserController {
         if (user == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found!");
         }
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @CrossOrigin
@@ -61,8 +64,8 @@ public class UserController {
         if (userService.isExist(user.getEmail())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("user already exist!");
         }
-        userService.create(user);
-        return ResponseEntity.status(HttpStatus.OK).body("succeed!");
+        User nu = userService.create(user);
+        return new ResponseEntity<>(nu,HttpStatus.OK);
     }
 
     @CrossOrigin
@@ -75,8 +78,8 @@ public class UserController {
         if (currentUser == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not registered!");
         }
-        userService.update(currentUser, user);
-        return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+        User updated = userService.update(currentUser, user);
+        return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 
     @CrossOrigin

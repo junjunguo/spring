@@ -37,17 +37,16 @@ public class UserServiceImpl implements UserService {
         return userDao.findByName(name);
     }
 
-    public void create(User user) {
+    public User create(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDao.create(user);
+       return userDao.create(user);
     }
 
     public User update(User c, User u) {
         if (u == null || u.getEmail() == null) {
             return null;
         }
-        u.setPassword(c.getPassword()); // password can not be changed her
-        return userDao.update(u);
+        return userDao.update(c.updateUser(c, u));
     }
 
     public void deleteByEmail(String email) {

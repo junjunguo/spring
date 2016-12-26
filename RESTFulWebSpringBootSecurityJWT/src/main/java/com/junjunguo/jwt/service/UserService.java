@@ -31,14 +31,15 @@ public interface UserService {
      * plaintext password will be encoded with {@link org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder}
      *
      * @param user the user
+     * @return the user
      */
-    void create(User user);
+    User create(User user);
 
     /**
      * Update user.
      *
-     * @param current   the current user
-     * @param update the user with updated info.
+     * @param current the current user
+     * @param update  the user with updated info.
      * @return the user
      */
     User update(User current, User update);

@@ -55,13 +55,9 @@ public class AuthenticationController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest authenticationRequest, Device device)
             throws AuthenticationException {
         try {
-            log("1 " + authenticationRequest.getEmail() + " pass " + authenticationRequest.getPassword());
-
             final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
-
             if (passwordEncoder.matches(authenticationRequest.getPassword(), userDetails.getPassword())) {
                 final String token = tokenUtil.generateToken(userDetails, null);
-                log("2" + token);
                 return ResponseEntity.ok(new LoginResponse(token));
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Email or password not correct!");

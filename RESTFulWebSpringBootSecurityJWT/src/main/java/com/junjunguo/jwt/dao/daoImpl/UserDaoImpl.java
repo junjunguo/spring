@@ -27,13 +27,14 @@ public class UserDaoImpl implements UserDao {
         return entityManager.createQuery("select u from User u", User.class).getResultList();
     }
 
-    public void create(User user) {
+    public User create(User user) {
         log("create ");
         try {
             entityManager.persist(user);
+            return user;
         } catch (Exception e){
             log("catch ");
-            e.printStackTrace();
+            return null;
         }
     }
 

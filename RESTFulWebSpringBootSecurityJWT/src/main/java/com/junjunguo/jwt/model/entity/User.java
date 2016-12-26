@@ -101,6 +101,24 @@ public class User {
         this.birth = birth;
     }
 
+
+    /**
+     * Update a user: username; firstname; lastname; country; gender;
+     *
+     * @param c the current user
+     * @param u the user with new info
+     * @return the user
+     */
+    public User updateUser(User c, User u) {
+        c.setUsername(u.getUsername());
+        c.setFirstname(u.getFirstname());
+        c.setLastname(u.getLastname());
+        c.setBirth(u.getBirth());
+        c.setCountry(u.getCountry());
+        c.setGender(u.getGender());
+        return c;
+    }
+
     /**
      * Gets birth.
      *
