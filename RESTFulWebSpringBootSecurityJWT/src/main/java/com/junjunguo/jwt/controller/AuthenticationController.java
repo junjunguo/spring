@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mobile.device.Device;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,7 +52,7 @@ public class AuthenticationController {
      */
     @CrossOrigin
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest authenticationRequest)
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest authenticationRequest, Device device)
             throws AuthenticationException {
         try {
             log("1 " + authenticationRequest.getEmail() + " pass " + authenticationRequest.getPassword());

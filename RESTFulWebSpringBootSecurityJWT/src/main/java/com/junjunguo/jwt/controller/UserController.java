@@ -55,29 +55,13 @@ public class UserController {
     }
 
     @CrossOrigin
-    @RequestMapping(path = "login/", method = RequestMethod.POST)
-    public ResponseEntity login(@RequestBody User user) {
-        log(user.getEmail() + " " + user.getPassword());
-        User us = userService.findByEmail(user.getEmail());
-        if (us != null && us.getPassword().equals(user.getPassword())) {
-            return new ResponseEntity<User>(us, HttpStatus.OK);
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("user name or password not correct!");
-    }
-
-    @CrossOrigin
     @RequestMapping(path = "register/", method = RequestMethod.POST)
     public ResponseEntity createUser(@RequestBody User user) {
         log("create user " + user.toString());
         if (userService.isExist(user.getEmail())) {
-            //            throw new CustomerException(HttpStatus.NOT_FOUND, "User already exist!");
-            // exceptions send too much data to client: which may cause security issues.
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("user already exist!");
         }
         userService.create(user);
-        //        HttpHeaders headers = new HttpHeaders();
-        //        headers.setLocation(ucBuilder.path("/user/email/{email}").buildAndExpand(user.getEmail()).toUri());
-        //        log("created ");
         return ResponseEntity.status(HttpStatus.OK).body("succeed!");
     }
 

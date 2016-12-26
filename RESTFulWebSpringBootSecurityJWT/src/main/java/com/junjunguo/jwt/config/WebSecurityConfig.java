@@ -78,7 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
                 .authorizeRequests()
-                //.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll() //allow Options: headers ...
 
                 // allow anonymous resource requests
                 .antMatchers(
@@ -90,11 +90,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js",
                         "/user/register/",
-                        "/user/login/",
                         "/auth/"
                             ).permitAll()
                 .antMatchers("/user/register/").permitAll()
-                .antMatchers("/user/login/").permitAll()
                 .antMatchers("/auth/").permitAll()
                 .anyRequest().authenticated();
 
